@@ -1,26 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Tabletop from 'tabletop';
+import AppHeader from './shared/header/AppHeader';
+import TabMonth from './shared/tab/TabMonth';
+import { getMonth } from './shared/utils/utils';
+import { Tabs } from 'antd';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const { TabPane } = Tabs;
+
+class App extends Component {
+   constructor(props){
+     super(props)
+     this.state = {
+       data: [],
+       months: []
+    }
+    this.distributeMonts = this.distributeMonts.bind(this)
+   }
+
+   distributeMonts(data) {
+    for (const row of data) {
+      const month = getMonth(row.Mes.split('-')[0])
+      if(this.state.months.indexOf(month)===-1){
+        this.state.months.push(month)
+      }
+    }
+   }
+
+  componentDidMount() {
+    Tabletop.init({
+      key: '1y5vJUysvtar2PU_ngIGug1KC6Qq104kacOBg1LV5qAg',
+      callback: googleData => {
+        const data = googleData;
+        console.log(data)
+        
+        this.distributeMonts(data)
+        this.setState({
+          data: data
+        })
+      },
+      simpleSheet: true
+    })
+  }
+  render() {
+    return (
+      <div className="App">
+        <AppHeader></AppHeader>
+        <div className="tabs">
+          {this.state.months.map((value, index) => {
+            return <TabMonth {...this.props} month={value} key={index}>
+
+                    </TabMonth>
+                      })}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
