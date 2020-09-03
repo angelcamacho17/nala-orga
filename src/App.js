@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import Tabletop from 'tabletop';
 import AppHeader from './shared/header/AppHeader';
 import TabMonth from './shared/tab/TabMonth';
@@ -13,9 +13,11 @@ class App extends Component {
      super(props)
      this.state = {
        data: [],
-       months: []
+       months: [],
+       curMonth: 'May'
     }
     this.distributeMonts = this.distributeMonts.bind(this)
+    this.getMonths = this.getMonths.bind(this)
    }
 
    distributeMonts(data) {
@@ -25,6 +27,12 @@ class App extends Component {
         this.state.months.push(month)
       }
     }
+   }
+
+   tabCliked(ev){
+     this.setState({
+       curMonth: ev
+     })
    }
 
   componentDidMount() {
@@ -42,17 +50,25 @@ class App extends Component {
       simpleSheet: true
     })
   }
+
+  getMonths() {
+    if (this.state?.months){
+      const reversed = this.state?.months.reverse()
+    return reversed.map((value, index) => <a className={"tab" + (this.state.curMonth === value ? " active " : "") }  onClick={this.tabCliked.bind(this, value)} key={index}> {value}</a>)
+    } else {
+        return []
+    }
+}
+
   render() {
     return (
-      <div className="App">
-        <AppHeader></AppHeader>
-        <div className="tabs">
-          {this.state.months.map((value, index) => {
-            return <TabMonth {...this.props} month={value} key={index}>
-
-                    </TabMonth>
-                      })}
-        </div>
+      <div>
+      <AppHeader></AppHeader>
+        <div className="App">
+          <div className="tabs">
+            {this.getMonths()}
+          </div>
+      </div>
       </div>
     );
   }

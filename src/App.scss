@@ -1,5 +1,21 @@
 .App {
   text-align: center;
+  padding: 32px 16px;
+  height: calc(100vh - 128px);
+  box-sizing: border-box;
+
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+
+    .tab {
+      cursor: pointer;
+    }
+
+    .active {
+      border-bottom: 4px solid #19E2D6;
+    }
+  }
 }
 
 .App-logo {

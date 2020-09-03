@@ -15,7 +15,7 @@ class TabMonth extends Component {
     
     render() {
         return (
-            <div>
+            <div className="tab">
                 {this.props.month}
             </div>
         ) 

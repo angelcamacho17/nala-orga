@@ -1,21 +1,14 @@
 .header {
     color: white;
     background: #2930FF;
-    height: 128px;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
+    height: 128px !important;
+    display: flex !important;
+    flex-flow: column !important;
+    justify-content: center !important;
     font-size: 48px;
     margin: 0 !important;
-    cursor: pointer;
+    text-align: center;
 }
-
-a:hover, a, a:active, a:focus {
-    color:white !important; 
-    text-decoration: none !important;
-    outline: none !important;
-}
-
 
 @media (max-width: 600px) {
     .header {

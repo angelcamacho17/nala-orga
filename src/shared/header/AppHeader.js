@@ -8,10 +8,10 @@ class AppHeader extends Component {
     
     render() {
         return (
-            <PageHeader
-            className="header"
-            title="Nala organigram"
-          />
+            <div className="header">
+                Nala organigram
+            </div>
+            
         ) 
     }
 
