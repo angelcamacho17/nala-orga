@@ -5,15 +5,18 @@
   box-sizing: border-box;
 
   .filter {
-    display: flex;    
+    display: flex; 
+    justify-content: center;  
+
     .search {
       display: flex;
       align-self: flex-start;
-      flex: 1;
+      width: 300px;
       border: none ;
       margin-left: 16px;
       border-bottom: 1px solid rgba($color: #2930FF, $alpha: 0.6) !important;
     }
+
     .search:focus, .search:active {
       border: none ;
       border-bottom: 1px solid rgba($color: #2930FF, $alpha: 0.6) !important;

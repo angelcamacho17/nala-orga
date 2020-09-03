@@ -37,6 +37,10 @@
       this.filtering = this.filtering.bind(this)
     }
 
+    /**
+     * Get current months
+     * @param {*} data 
+     */
     distributeMonts(data) {
       for (const row of data) {
         const month = getMonth(row.Mes.split('-')[0])
@@ -46,6 +50,10 @@
       }
     }
 
+    /**
+     * Get current roles
+     * @param {*} data 
+     */
     distributeRoles(data){
       for (const row of data) {
         const role = row["Nivel Jerárquico"]
@@ -55,6 +63,9 @@
       }
     }
 
+    /**
+     * Set current month
+     */
     tabCliked(ev){
       this.setState({
         curMonth: ev
@@ -80,7 +91,10 @@
       })
     }
 
-    getMonths() {
+  /**
+   * Return months tabs.
+   */
+  getMonths() {
       if (this.state?.months){
       return this.state.months.map((value, index) => <a className={"tab" + (this.state.curMonth === value ? " active " : "") }  onClick={this.tabCliked.bind(this, value)} key={index}> {value}</a>)
       } else {
@@ -88,11 +102,14 @@
       }
   }
 
+  /**
+   * Get employees according months and role.
+   * @param {*} month 
+   * @param {*} role 
+   */
   getMonthsRoles(month, role) {
     if(this.state?.months){
       if (month){
-        console.log(month)
-        console.log(role)
         const workers = this.state?.data.filter(worker => {
           if (this.state.filter) {
             return (getMonth(worker.Mes) === month) && worker["Nivel Jerárquico"] == role &&  worker["Nombre "].toLowerCase().includes(this.state.filter);
@@ -100,7 +117,6 @@
             return (getMonth(worker.Mes) === month) && worker["Nivel Jerárquico"] == role ;
           }
         })
-        console.log(workers)
         return workers.map((value, index) => 
               <div className={"card "+ (value["Nivel Jerárquico"])} key={index}> 
                     <h3>{value["Nombre "]}</h3> 
@@ -116,8 +132,11 @@
     }
   }
 
+  /**
+   * Get organigram per month.
+   */
   getOrganigram(){
-    if (this.state?.roles){
+    if (this.state?.roles) {
       return <div>
         {this.state.roles.map((value,index)=>{
           return <div className="month-organ" key={index}>
@@ -128,6 +147,10 @@
     }
   }
 
+  /**
+   * Filter employees.
+   * @param {*} ev
+   */
   filtering(ev) {
     this.setState({
       filter: ev.target.value.toLowerCase()
