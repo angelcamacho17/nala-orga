@@ -16,6 +16,44 @@
       border-bottom: 4px solid #19E2D6;
     }
   }
+
+  .month-organ {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px;
+
+    .card {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+      height: 120px;
+      width: 220px;
+      border: 1px solid black;
+      border-radius: 8px;
+      margin: 0 16px;
+    }
+
+    .Cordinador {
+      border: 1px solid red;
+    }
+
+    .Profesional {
+      border: 1px solid blue;
+    }
+
+    .Manager {
+      border: 1px solid green;
+
+    }
+
+    .Supervisor {
+      border: 1px solid yellow;
+
+
+    }
+  }
 }
 
 .App-logo {
