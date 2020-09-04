@@ -2,12 +2,14 @@
   import './App.scss';
   import Tabletop from 'tabletop';
   import AppHeader from './shared/header/AppHeader';
+  import Worker from './shared/worker/Worker';
   import { Input } from 'antd';
   import { getMonth } from './shared/utils/utils';
   import { Tabs } from 'antd';
   import { UserOutlined } from '@ant-design/icons';
   import { AudioOutlined } from '@ant-design/icons';
   import { JsonToTable } from "react-json-to-table";
+
 
   const { Search } = Input;
   const { TabPane } = Tabs;
@@ -118,40 +120,7 @@
             return (getMonth(worker.Mes) === month) && worker["Nivel Jerárquico"] == role ;
           }
         })
-        return workers.map((value, index) => 
-              <div className={"card "+ (value["Nivel Jerárquico"])} key={index}> 
-                    <h3>{value["Nombre "]}</h3> 
-                    <div>
-                      <p className="label">nivel: </p> 
-                        <p className="value">
-                          {value["Nivel Jerárquico"]}
-                        </p>
-                    </div> 
-                    <div>
-                      <p className="label">area: </p> 
-                      <p className="value">
-                        {value["Area"]}
-                      </p>
-                    </div> 
-                    <div>
-                      <p className="label">ingreso:</p> 
-                      <p className="value">
-                        {value["Fecha de ingreso"]}
-                      </p>
-                    </div> 
-                    <div>
-                      <p className="label">subarea: </p>
-                      <p className="value">
-                        {value["Subarea"]}
-                      </p>
-                    </div> 
-                    <div>
-                      <p className="label">sueldo: </p>
-                      <p className="value">
-                        {value.Sueldo}
-                      </p>
-                    </div> 
-              </div>)
+        return workers.map((value, index) => <Worker {...this.props} worker={value} key={index}></Worker>)
       } 
     } else {
         return []
@@ -233,17 +202,17 @@
                   placeholder="Look for an employee"
                   onChange={this.filtering}
                 />
-            </div>
-            <div className="tabs">
-              {this.getMonths()}
-            </div>
-            <div class="organigram">
-              {this.getOrganigram()}
-            </div>
-            <h3>{this.state.curMonth} data</h3>
-            <div className="table">
-              <JsonToTable  json={this.getTable()} />
-            </div>
+              </div>
+              <div className="tabs">
+                {this.getMonths()}
+              </div>
+              <div class="organigram">
+                {this.getOrganigram()}
+              </div>
+              <h3>{this.state.curMonth} data</h3>
+              <div className="table">
+                <JsonToTable  json={this.getTable()} />
+              </div>
         </div>
         </div>
       );
