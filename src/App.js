@@ -3,6 +3,7 @@
   import Tabletop from 'tabletop';
   import AppHeader from './shared/header/AppHeader';
   import Worker from './shared/worker/Worker';
+  import Footer from './shared/footer/Footer';
   import { Input } from 'antd';
   import { getMonth } from './shared/utils/utils';
   import { Tabs } from 'antd';
@@ -215,6 +216,7 @@
               <div className="table">
                 <JsonToTable  json={this.getTable()} />
               </div>
+            <Footer></Footer>
         </div>
         </div>
       );
