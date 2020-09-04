@@ -210,6 +210,8 @@
                 {this.getMonths()}
               </div>
               <div class="organigram">
+                <h2>Organigrama</h2>
+                <div className="divider"></div>
                 {this.getOrganigram()}
               </div>
               <h3>{this.state.curMonth} data</h3>

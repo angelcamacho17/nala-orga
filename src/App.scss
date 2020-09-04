@@ -46,6 +46,15 @@
     box-shadow: 0 0 8px rgba(0,0,0,.175)!important;
     padding: 16px;
 
+    .divider {
+      height: 2px;
+      background: rgba(0,0,0,0.2);
+      width: auto;
+      margin: 8px;
+      margin-bottom: 32px;
+      box-sizing: border-box;
+    }
+
     .month-organ {
   
       display: grid;
