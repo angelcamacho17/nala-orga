@@ -160,7 +160,6 @@
             return (getMonth(worker.Mes) === month) ;
           }
         })
-        console.log(rows)
         return rows;
       } 
     } else {
