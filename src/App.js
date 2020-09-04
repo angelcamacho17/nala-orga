@@ -7,6 +7,7 @@
   import { Tabs } from 'antd';
   import { UserOutlined } from '@ant-design/icons';
   import { AudioOutlined } from '@ant-design/icons';
+  import { JsonToTable } from "react-json-to-table";
 
   const { Search } = Input;
   const { TabPane } = Tabs;
@@ -27,7 +28,8 @@
         data: [],
         months: [],
         roles: [],
-        curMonth: 'May'
+        curMonth: 'May',
+        curEmps: []
       }
       this.distributeMonts = this.distributeMonts.bind(this)
       this.distributeRoles = this.distributeRoles.bind(this)
@@ -35,6 +37,8 @@
       this.getMonthsRoles = this.getMonthsRoles.bind(this)
       this.getOrganigram = this.getOrganigram.bind(this)
       this.filtering = this.filtering.bind(this)
+      this.getTable = this.getTable.bind(this)
+      this.getRows = this.getRows.bind(this)
     }
 
     /**
@@ -77,12 +81,9 @@
         key: '1y5vJUysvtar2PU_ngIGug1KC6Qq104kacOBg1LV5qAg',
         callback: googleData => {
           const data = googleData;
-          console.log(data)
           
           this.distributeMonts(data)
           this.distributeRoles(data)
-          console.log(this.state.roles)
-
           this.setState({
             data: data
           })
@@ -120,11 +121,36 @@
         return workers.map((value, index) => 
               <div className={"card "+ (value["Nivel Jerárquico"])} key={index}> 
                     <h3>{value["Nombre "]}</h3> 
-                    <p>{value["Nivel Jerárquico"]}</p> 
-                    <p>{value["Area"]}</p> 
-                    <p>{value["Fecha de ingreso"]}</p> 
-                    <p>{value["Subarea"]}</p> 
-                    <p>{value["Sueldo bruto"]}</p> 
+                    <div>
+                      <p className="label">nivel: </p> 
+                        <p className="value">
+                          {value["Nivel Jerárquico"]}
+                        </p>
+                    </div> 
+                    <div>
+                      <p className="label">area: </p> 
+                      <p className="value">
+                        {value["Area"]}
+                      </p>
+                    </div> 
+                    <div>
+                      <p className="label">ingreso:</p> 
+                      <p className="value">
+                        {value["Fecha de ingreso"]}
+                      </p>
+                    </div> 
+                    <div>
+                      <p className="label">subarea: </p>
+                      <p className="value">
+                        {value["Subarea"]}
+                      </p>
+                    </div> 
+                    <div>
+                      <p className="label">sueldo: </p>
+                      <p className="value">
+                        {value.Sueldo}
+                      </p>
+                    </div> 
               </div>)
       } 
     } else {
@@ -148,6 +174,43 @@
   }
 
   /**
+   * Get table rows for this month
+   * @param {*} month 
+   * @param {*} role 
+   */
+  getRows(month) {
+    if(this.state?.months){
+      if (month){
+        const rows = this.state?.data.filter(worker => {
+          if (this.state.filter) {
+            return (getMonth(worker.Mes) === month) &&  worker["Nombre "].toLowerCase().includes(this.state.filter);
+          } else {
+            return (getMonth(worker.Mes) === month) ;
+          }
+        })
+        console.log(rows)
+        return rows;
+      } 
+    } else {
+        return []
+    }
+  }
+
+  /**
+   * Get this month's table
+   * @param {*} 
+   */
+  getTable() {
+    if (this.state?.roles) {
+      let res = this.getRows(this.state.curMonth) 
+      res = [...new Set(res)]
+      return res
+    } else {
+      return []
+    }
+  }
+
+  /**
    * Filter employees.
    * @param {*} ev
    */
@@ -158,6 +221,7 @@
   }
 
     render() {
+
       return (
         <div>
         <AppHeader></AppHeader>
@@ -173,8 +237,12 @@
             <div className="tabs">
               {this.getMonths()}
             </div>
-            <div>
+            <div class="organigram">
               {this.getOrganigram()}
+            </div>
+            <h3>{this.state.curMonth} data</h3>
+            <div className="table">
+              <JsonToTable  json={this.getTable()} />
             </div>
         </div>
         </div>

@@ -14,12 +14,12 @@
       width: 300px;
       border: none ;
       margin-left: 16px;
-      border-bottom: 1px solid rgba($color: #2930FF, $alpha: 0.6) !important;
+      border-bottom: 1px solid #2930ffb3 !important;
     }
 
     .search:focus, .search:active {
       border: none ;
-      border-bottom: 1px solid rgba($color: #2930FF, $alpha: 0.6) !important;
+      border-bottom: 1px solid #2930ffb3 !important;
     }
 
     margin-bottom: 48px;
@@ -36,63 +36,103 @@
     }
 
     .active {
-      border-bottom: 4px solid #19E2D6;
+      border-bottom: 4px solid #ba68c8;
     }
   }
 
-  .month-organ {
-
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    column-gap: 16px;
-    grid-column-gap: 16px; /* for older browsers */
-    row-gap: 8px;
-    grid-row-gap: 8px; /* for older browsers */
-    align-items: center;
-    justify-content: center;
-    margin: 16px;
-    justify-items: center;
-
-
-    .card {
-      display: flex;
-      flex-flow: column;
-      justify-content: center;
+  .organigram {
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,.175)!important;
+    padding: 16px;
+    
+    .month-organ {
+  
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      column-gap: 16px;
+      grid-column-gap: 16px; /* for older browsers */
+      row-gap: 8px;
+      grid-row-gap: 8px; /* for older browsers */
       align-items: center;
-      height: 150px;
-      width: 220px;
-      border: 1px solid black;
-      border-radius: 8px;
-      margin: 0 16px;
-      box-shadow: 0 0 8px rgba(0,0,0,.175)!important;
-
-      h3 {
-        margin: 0 !important;
-
+      justify-content: center;
+      margin: 16px;
+      justify-items: center;
+  
+  
+      .card {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        height: 180px;
+        width: 220px;
+        border: 1px solid black;
+        border-radius: 8px;
+        margin: 0 16px;
+        box-shadow: 0 0 8px rgba(0,0,0,.175) !important;
+  
+        h3 {
+          margin: 0 !important;
+  
+        }
+  
+        div{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0 !important;
+          width: 100%;
+          height: 24px;
+  
+          .label {
+            font-size: 14px;
+            color: rgba(0,0,0, 0.6)
+          }
+          .value {
+            display: flex;
+          }
+        }
+  
       }
-
-      p{
-        margin: 0 !important;
+  
+      .Cordinador {
+        border: 1px solid rgba($color: #6a1b9a, $alpha: 0.8);
       }
-    }
-
-    .Cordinador {
-      border: 1px solid rgba($color: black, $alpha: 0.6);
-    }
-
-    .Profesional {
-      border: 1px solid rgba($color: #2930FF, $alpha: 0.6);
-    }
-
-    .Manager {
-      border: 1px solid rgba($color: #2930FF, $alpha: 0.8);
-    }
-
-    .Supervisor {
-      border: 1px solid rgba($color: #19E2D6, $alpha: 0.6);
-
+  
+      .Profesional {
+        border: 1px solid rgba($color: #e040fb, $alpha: 0.8);
+      }
+  
+      .Manager {
+        border: 1px solid rgba($color: #311b92, $alpha: 0.8);
+      }
+  
+      .Supervisor {
+        border: 1px solid rgba($color: #f44336, $alpha: 0.8);
+  
+      }
     }
   }
+
+
+  .table {
+    margin: 16px 0;
+    margin-bottom: 32px;
+  }
+}
+
+.App::-webkit-scrollbar {
+  width: 8px;
+  background-color: #e5e6e8;
+}
+
+.App::-webkit-scrollbar-thumb {
+  border-radius: 25px;
+  background-color: #afb4b8;
+}
+
+.App::-webkit-scrollbar-track {
+  border-radius: 25px;
 }
 
 .App-logo {
