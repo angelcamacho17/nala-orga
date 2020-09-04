@@ -113,6 +113,7 @@
   getMonthsRoles(month, role) {
     if(this.state?.months){
       if (month){
+        // Filter workers by month, and input search (if there is)
         const workers = this.state?.data.filter(worker => {
           if (this.state.filter) {
             return (getMonth(worker.Mes) === month) && worker["Nivel Jerárquico"] == role &&  worker["Nombre "].toLowerCase().includes(this.state.filter);
@@ -150,6 +151,7 @@
   getRows(month) {
     if(this.state?.months){
       if (month){
+        // Filter row by month, and input search (if there is)
         const rows = this.state?.data.filter(worker => {
           if (this.state.filter) {
             return (getMonth(worker.Mes) === month) &&  worker["Nombre "].toLowerCase().includes(this.state.filter);
